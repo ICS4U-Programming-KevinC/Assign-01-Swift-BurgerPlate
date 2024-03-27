@@ -25,7 +25,6 @@ let PLATESIDELENGTH: Double = 35.0
 let HST: Double = 1.13
 let TOTALINNERTRIANGLEANGLE: Int = 180
 
-
 print("This program asks you two angles of your plate,", terminator: "")
 print("and the size of your burger, then tells you the ", terminator: "")
 print("type of triangle your plate is and how many ", terminator: "")
