@@ -25,6 +25,31 @@ let PLATESIDELENGTH: Double = 35.0
 let HST: Double = 1.13
 let TOTALINNERTRIANGLEANGLE: Int = 180
 
+func calculateTriangleType(_ angle1: Double, _ angle2: Double, _ angle3: Double) -> String {
+    if angle1 == angle2 && angle2 == angle3 {
+        return "Equilateral"
+    } else if angle1 == angle2 || angle2 == angle3 || angle1 == angle3 {
+        return "Isosceles"
+    } else {
+        return "Scalene"
+    }
+}
+
+func calculateTriArea(_ angle1: Double, _ angle2: Double, _ angle3: Double) -> Double {
+    let sinLaw = sin(angle3) / PLATESIDELENGTH
+    let secondSide = sin(angle1) / sinLaw
+    let height = sin(angle2) * secondSide
+    return abs((PLATESIDELENGTH * height) / 2)
+}
+
+func getBurgerArea(_ burgerDiameter: Double) -> Double {
+    return Double.pi * pow((burgerDiameter / 2), 2)
+}
+
+func getBurgerCount(_ burgerArea: Double, _ plateArea: Double) -> Int {
+    return Int(plateArea / burgerArea)
+}
+
 print("This program asks you two angles of your plate,", terminator: "")
 print("and the size of your burger, then tells you the ", terminator: "")
 print("type of triangle your plate is and how many ", terminator: "")
@@ -101,29 +126,5 @@ repeat {
 } while !quit
 
 func getThirdAngle(_ angle1: Double, _ angle2: Double) -> Double {
-    return Double(TOTAL_INNER_TRIANGLE_ANGLE - Int(angle1) - Int(angle2))
-}
-
-func calculateTriangleType(_ angle1: Double, _ angle2: Double, _ angle3: Double) -> String {
-    if angle1 == angle2 && angle2 == angle3 {
-        return "Equilateral"
-    } else if angle1 == angle2 || angle2 == angle3 || angle1 == angle3 {
-        return "Isosceles"
-    } else {
-        return "Scalene"
-    }
-
-func calculateTriArea(_ angle1: Double, _ angle2: Double, _ angle3: Double) -> Double {
-    let sinLaw = sin(angle3) / PLATE_SIDE_LENGTH
-    let secondSide = sin(angle1) / sinLaw
-    let height = sin(angle2) * secondSide
-    return abs((PLATE_SIDE_LENGTH * height) / 2)
-}
-
-func getBurgerArea(_ burgerDiameter: Double) -> Double {
-    return Double.pi * pow((burgerDiameter / 2), 2)
-}
-
-func getBurgerCount(_ burgerArea: Double, _ plateArea: Double) -> Int {
-    return Int(plateArea / burgerArea)
+    return Double(TOTALINNERTRIANGLEANGLE - Int(angle1) - Int(angle2))
 }
